@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Date Plan</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #d81b60;
+        }
+
+        input[type="text"], input[type="date"], select, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus, select:focus {
+            border-color: #d81b60;
+            outline: none;
+        }
+
+        button {
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c2185b;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .host-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff7043;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .host-button:hover {
+            background-color: #ff5722;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #f8bbd0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun Date Plan</h1>
+        <form id="dateForm">
+            <label>Where do you want to meet?</label>
+            <select id="location">
+                <option value="Baglung">Baglung</option>
+                <option value="Ilam">Ilam</option>
+                <option value="Kathmandu">Kathmandu</option>
+                <option value="Pokhara">Pokhara</option>
+            </select>
+
+            <label>Date:</label>
+            <input type="date" id="date">
+
+            <label>Food:</label>
+            <select id="food">
+                <option value="Momo">Momo</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Any Other">Any Other</option>
+            </select>
+
+            <label>Romance Type:</label>
+            <select id="romance">
+                <option value="Hug">Hug</option>
+                <option value="Kiss">Kiss</option>
+                <option value="Love Bite">Love Bite</option>
+            </select>
+            
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+
+        <div id="result" class="hidden">
+            <h2>Your Choices</h2>
+            <p><strong>Location:</strong> <span id="resultLocation"></span></p>
+            <p><strong>Date:</strong> <span id="resultDate"></span></p>
+            <p><strong>Food:</strong> <span id="resultFood"></span></p>
+            <p><strong>Romance:</strong> <span id="resultRomance"></span></p>
+        </div>
+    </div>
+
+    <button class="host-button" onclick="openHostPage()">Host</button>
+
+    <script>
+        function submitForm() {
+            const location = document.getElementById('location').value;
+            const date = document.getElementById('date').value;
+            const food = document.getElementById('food').value;
+            const romance = document.getElementById('romance').value;
+
+            localStorage.setItem('location', location);
+            localStorage.setItem('date', date);
+            localStorage.setItem('food', food);
+            localStorage.setItem('romance', romance);
+
+            document.getElementById('resultLocation').textContent = location;
+            document.getElementById('resultDate').textContent = date;
+            document.getElementById('resultFood').textContent = food;
+            document.getElementById('resultRomance').textContent = romance;
+
+            document.getElementById('result').classList.remove('hidden');
+        }
+
+        function openHostPage() {
+            window.open('host.html', '_blank', 'width=600,height=400');
+        }
+    </script>
+</body>
+</html>

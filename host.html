@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #d81b60;
+        }
+
+        input[type="password"], button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="password"]:focus {
+            border-color: #d81b60;
+            outline: none;
+        }
+
+        button {
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c2185b;
+        }
+
+        #hostContent {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #f8bbd0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Host Login</h1>
+        <input type="password" id="hostPassword" placeholder="Enter host password">
+        <button onclick="checkPassword()">Submit</button>
+
+        <div id="hostContent" class="hidden">
+            <h2>Host View: Your Girlfriend's Responses</h2>
+            <p><strong>Location:</strong> <span id="hostLocation"></span></p>
+            <p><strong>Date:</strong> <span id="hostDate"></span></p>
+            <p><strong>Food:</strong> <span id="hostFood"></span></p>
+            <p><strong>Romance:</strong> <span id="hostRomance"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('hostPassword').value;
+
+            if (password === "kandel123") {
+                document.getElementById('hostContent').classList.remove('hidden');
+
+                document.getElementById('hostLocation').textContent = localStorage.getItem('location');
+                document.getElementById('hostDate').textContent = localStorage.getItem('date');
+                document.getElementById('hostFood').textContent = localStorage.getItem('food');
+                document.getElementById('hostRomance').textContent = localStorage.getItem('romance');
+            } else {
+                alert("Incorrect Password! Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>
